@@ -105,7 +105,7 @@ fig.update_layout(
   ),
   yaxis=dict(
     title="Inches (Y)",
-    range=[0, 100],
+    range=[-20, 120],
     autorange=False,
     autorangeoptions=None
   ),
