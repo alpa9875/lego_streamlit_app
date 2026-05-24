@@ -13,7 +13,7 @@ def load_inventory_summary():
         SELECT
             COUNT(*) AS total_sets,
             SUM(retail_price) AS total_retail_price,
-            SUM(retail_value) AS total_retail_value
+            SUM(retail_value) AS total_retail_value,
             SUM(num_parts) AS total_parts
         FROM personal_set_inv
         WHERE retail_value > 0;
