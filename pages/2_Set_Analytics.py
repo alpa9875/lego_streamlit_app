@@ -35,10 +35,10 @@ df = load_set_data()
 sealed = df[df["is_sealed"] == True]
 open_sets = df[df["is_sealed"] == False]
 
-sealed_value = (sealed["retail_value"] * sealed["quantity"]).sum()
+sealed_value = (sealed["aftermarket_value"] * sealed["quantity"]).sum()
 sealed_price = (sealed["retail_price"] * sealed["quantity"]).sum()
 sealed_ratio = sealed_value / sealed_price if sealed_price > 0 else 0
-open_value = (open_sets["retail_value"] * open_sets["quantity"]).sum()
+open_value = (open_sets["aftermarket_value"] * open_sets["quantity"]).sum()
 open_price = (open_sets["retail_price"] * open_sets["quantity"]).sum()
 open_ratio = open_value / open_price if open_price > 0 else 0
 avg_parts = df["num_parts"].mean()
