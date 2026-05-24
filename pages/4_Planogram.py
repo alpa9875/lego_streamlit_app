@@ -61,7 +61,7 @@ for _, row in drawers.iterrows():
   parts_list = (
     parts_in_drawer
     .apply(lambda r: f"{r['part_num']} x {r['total_qty']} (${r['value']:.2f})", axis=1)
-    .list()
+    .tolist()
   )
   parts_html = "<br>".join(parts_list)
 
