@@ -12,8 +12,11 @@ def load_set_data():
     query = """
         SELECT
             psi.set_num,
+            psi.name,
             psi.retail_price,
             psi.retail_value AS aftermarket_value,
+            psi.is_sealed,
+            psi.quantity,
             s.num_parts,
             s.year,
             t.name AS theme
@@ -28,6 +31,31 @@ def load_set_data():
     return pd.read_sql(query, engine)
 
 df = load_set_data()
+
+sealed = df[df["is_sealed"] == True]
+open_sets = df[df["is_sealed"] == False]
+
+sealed_value = (sealed["retail_value"] * sealed["quantity"]).sum()
+sealed_price = (sealed["retail_price"] * sealed["quantity"]).sum()
+sealed_ratio = sealed_value / sealed_price if sealed_price > 0 else 0
+open_value = (open_sets["retail_value"] * open_sets["quantity"]).sum()
+open_price = (open_sets["retail_price"] * open_sets["quantity"]).sum()
+open_ratio = open_value / open_price if open_price > 0 else 0
+avg_parts = df["num_parts"].mean()
+
+st.subheader("Set Value Metrics")
+
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Retail Value (Sealed)", f"${sealed_value:,.0f}")
+col2.metric("Total Retail Price (Sealed)", f"${sealed_price:,.0f}")
+col3.metric("Sealed Value / Retail Price", f"{sealed_ratio:.2f}x")
+
+col4, col5, col6 = st.columns(3)
+col4.metric("Total Retail Value (Open)", f"${open_value:,.0f}")
+col5.metric("Total Retail Price (Open)", f"${open_price:,.0f}")
+col6.metric("Open Value / Retail Price", f"{open_ratio:.2f}x")
+
+st.metric("Average Parts per Set", f"{avg_parts:,.0f}")
 
 st.subheader("Correlation Explorer")
 
