@@ -13,7 +13,7 @@ def load_set_data():
         SELECT
             psi.set_num,
             psi.retail_price,
-            psi.retail_value,
+            psi.retail_value AS aftermarket_value,
             s.num_parts,
             s.year,
             t.name AS theme
@@ -32,7 +32,7 @@ df = load_set_data()
 st.subheader("Correlation Explorer")
 
 x_axis = st.selectbox(" X-axis", ["num_parts", "year", "retail_price"])
-y_axis = st.selectbox("Y-axis", ["retail_value", "retail_price"])
+y_axis = st.selectbox("Y-axis", ["aftermarket_value", "retail_price"])
 
 fig = px.scatter(
     df,
@@ -47,12 +47,12 @@ fig = px.scatter(
 st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Them-Level Value Trends")
-theme_avg = df.groupby("theme")[["retail_price", "retail_value"]].mean().reset_index()
+theme_avg = df.groupby("theme")[["retail_price", "aftermarket_value"]].mean().reset_index()
 
 fig2 = px.bar(
-    theme_avg.sort_values("retail_value", ascending=False).head(20),
+    theme_avg.sort_values("aftermarket_value", ascending=False).head(20),
     x="theme",
-    y="retail_value",
+    y="aftermarket_value",
     title="Top Themes by Avg Aftermarket Value"
 )
 
