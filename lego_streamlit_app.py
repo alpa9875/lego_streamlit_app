@@ -13,4 +13,9 @@ st.write("""
 Welcome to Alicia's LEGO Analytics Platform.
 Use the sidebar to navigate between:
 - **Home Dashboard** - high-level metrics and visualizations
-- **Set Analytics** - correlations, trends and value modeling""")
+- **Set Analytics** - correlations, trends and value modeling
+- **Part Analytics** - rarity index, rarity-value weighting, set-based rarity, and total value
+- **Lego Room Planogram** - Drawer visualization of my Lego room with a value for each drawer
+- **Set Explorer Page** - Search by set number
+- **Color and Theme Analytics** - Analytics of parts based on color and theme
+- **Inventory Valuation Page** - Inventory value metrics""")
