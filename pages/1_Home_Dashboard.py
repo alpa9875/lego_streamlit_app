@@ -11,19 +11,17 @@ engine = get_engine()
 def load_inventory_summary():
     query = """
         SELECT
-            COUNT(*) AS total_sets,
-            SUM(retail_price) AS total_retail_price,
-            SUM(retail_value) AS total_retail_value,
-        FROM personal_set_inv
-        WHERE retail_value > 0;
-    """
-    return pd.read_sql(query, engine)
+            -- total sets still comes from personal_set_inv
+            (SELECT COUNT(*) FROM personal_set_inv) AS total_sets,
 
-@st.cache_data(ttl=300)
-def load_parts_inventory_summary():
-    query = """
-        SELECT COUNT(*) AS total_parts
-        FROM set_part_inventory;
+            -- total retail price
+            (SELECT SUM(retail_price * quantity) FROM personal_set_inv) AS total_retail_price,
+
+            -- total retail value
+            (SELECT SUM(retail_value * quantity) FROM personal_set_inv) AS total_retail_value,
+
+            -- total parts now comes from set_parts_inventory
+            (SELECT SUM(grand_total_qty) FROM set_parts_inventory) AS total_parts
     """
     return pd.read_sql(query, engine)
 
