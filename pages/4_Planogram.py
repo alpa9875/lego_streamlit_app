@@ -105,6 +105,9 @@ fig.update_layout(
   ),
   yaxis=dict(
     title="Inches (Y)",
+    range=[0, 100],
+    autorange=False,
+    autorangeoptions=None
   ),
   width=1400,
   height=900,
