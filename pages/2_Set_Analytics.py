@@ -51,8 +51,8 @@ theme_avg = df.groupby("theme")[["retail_price", "retail_value"]].mean().reset_i
 
 fig2 = px.bar(
     theme_avg.sort_values("retail_value", ascending=False).head(20),
-    x="theme",
-    y="retail_value",
+    x="Theme",
+    y="Aftermarket_value",
     title="Top Themes by Avg Aftermarket Value"
 )
 
