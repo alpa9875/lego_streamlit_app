@@ -8,7 +8,7 @@ st.title("Part Analytics")
 engine = get_engine()
 
 @st.cache_data(ttl=300)
-def load_parts()
+def load_parts():
   query = """
     SELECT
       spi.part_num,
