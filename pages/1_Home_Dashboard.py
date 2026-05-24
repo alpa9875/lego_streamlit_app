@@ -14,7 +14,7 @@ def load_inventory_summary():
             (SELECT COUNT(*) FROM personal_set_inv) AS total_sets,
             (SELECT SUM(retail_price * quantity) FROM personal_set_inv) AS total_retail_price,
             (SELECT SUM(retail_value * quantity) FROM personal_set_inv) AS total_aftermarket_value,
-            (SELECT SUM(grand_total_qty) FROM set_parts_inventory) AS total_parts
+            (SELECT SUM(grand_total_qty) FROM set_part_inventory) AS total_parts
         FROM (SELECT 1) AS dummy;
     """
     return pd.read_sql(query, engine)
