@@ -11,16 +11,9 @@ engine = get_engine()
 def load_inventory_summary():
     query = """
         SELECT
-            -- total sets still comes from personal_set_inv
             (SELECT COUNT(*) FROM personal_set_inv) AS total_sets,
-
-            -- total retail price
             (SELECT SUM(retail_price * quantity) FROM personal_set_inv) AS total_retail_price,
-
-            -- total retail value
             (SELECT SUM(retail_value * quantity) FROM personal_set_inv) AS total_retail_value,
-
-            -- total parts now comes from set_parts_inventory
             (SELECT SUM(grand_total_qty) FROM set_parts_inventory) AS total_parts
     """
     return pd.read_sql(query, engine)
