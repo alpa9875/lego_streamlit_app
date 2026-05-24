@@ -14,9 +14,16 @@ def load_inventory_summary():
             COUNT(*) AS total_sets,
             SUM(retail_price) AS total_retail_price,
             SUM(retail_value) AS total_retail_value,
-            SUM(num_parts) AS total_parts
         FROM personal_set_inv
         WHERE retail_value > 0;
+    """
+    return pd.read_sql(query, engine)
+
+@st.cache_data(ttl=300)
+def load_parts_inventory_summary():
+    query = """
+        SELECT COUNT(*) AS total_parts
+        FROM set_part_inventory;
     """
     return pd.read_sql(query, engine)
 
