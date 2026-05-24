@@ -11,10 +11,10 @@ engine = get_engine()
 def load_parts()
   query = """
     SELECT
-      spi part_num,
-      p name,
-      pc name AS category,
-      spi grand_total_qty AS total_quantity
+      spi.part_num,
+      p.name,
+      pc.name AS category,
+      spi.grand_total_qty AS total_quantity
     FROM set_part_inventory spi
     JOIN parts p
       ON spi.part_num = p.part_num
