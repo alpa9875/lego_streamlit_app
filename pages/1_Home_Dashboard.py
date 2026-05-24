@@ -23,7 +23,7 @@ def load_inventory_summary():
 @st.cache_data(ttl=300)
 def load_theme_distribution():
     query = """
-        SELECT t.name AS theme, COUNT(*) AS num__sets
+        SELECT t.name AS theme, COUNT(*) AS num_sets
         FROM personal_set_inv psi
         JOIN sets s ON s.set_num = psi.set_num || '-1'
         JOIN themes t ON t.id = s.theme_id
