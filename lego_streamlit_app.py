@@ -2,11 +2,15 @@ import streamlit as st
 import pandas as pd
 from utils.db import get_engine
 
-st.title("LEGO Analytics Dashboard")
+st.set_page_config(
+    page_title="LEGO Room Analytics",
+    page_icon="🧱",
+    layout="wide"
+)
 
-engine = get_engine()
-
-df = pd.read_sql("SELECT * FROM personal_set_inv LIMIT 20;", engine)
-
-st.write("Sample of your data:")
-st.dataframe(df)
+st.title("🧱 LEGO Data Analytics Platform")
+st.write("""
+Welcome to Alicia's LEGO Analytics Platform.
+Use the sidebar to navigate between:
+- **Home Dashboard** - high-level metrics and visualizations
+- **Set Analytics** - correlations, trends and value modeling""")
