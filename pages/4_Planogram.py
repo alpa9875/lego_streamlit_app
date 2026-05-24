@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from utils.db import get_engine
+import plotly.graph_objects as go
 
 st.title(" Planogram (Drawer Visualization)")
 
@@ -15,7 +16,7 @@ def load_drawer_coords():
       x,
       y,
       width,
-      heigh
+      height
     FROM drawer_ids
     ORDER BY drawer_id;
   """
@@ -49,7 +50,7 @@ drawer_values = (
 )
 
 drawers = drawers.merge(drawer_values, on="drawer_id", how="left")
-drawers["drawer_value"] = drawers["drawer_value".fillna(0.01)
+drawers["drawer_value"] = drawers["drawer_value"].fillna(0.01)
 
 fig = go.Figure()
 
@@ -59,7 +60,7 @@ for _, row in drawers.iterrows():
 
   parts_list = (
     parts_in_drawer
-    .apply(lambda r: f"{r['part_num']} x {r['total_qty']} (${r['value']:.2f})",
+    .apply(lambda r: f"{r['part_num']} x {r['total_qty']} (${r['value']:.2f})", axis=1)
     .list()
   )
   parts_html = "<br>".join(parts_list)
@@ -83,7 +84,7 @@ for _, row in drawers.iterrows():
       f"<b>Drawer:</b> {row['drawer_id']}<br>"
       f"<b>Total Value:</b> ${row['drawer_value']:.2f}<br>"
       f"<b>Contents:</b><br>{parts_html}<br>"
-      "<extra></extra?"
+      "<extra></extra>"
     )
   ))
 for x in [94, 194]:
