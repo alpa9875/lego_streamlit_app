@@ -46,12 +46,12 @@ avg_parts = df["num_parts"].mean()
 st.subheader("Set Value Metrics")
 
 col1, col2, col3 = st.columns(3)
-col1.metric("Total Retail Value (Sealed Sets)", f"${sealed_value:,.0f}")
+col1.metric("Total Aftermarket Value (Sealed Sets)", f"${sealed_value:,.0f}")
 col2.metric("Total Retail Price (Sealed Sets)", f"${sealed_price:,.0f}")
 col3.metric("Average Sealed Set Value / Retail Price", f"{sealed_ratio:.2f}x")
 
 col4, col5, col6 = st.columns(3)
-col4.metric("Total Retail Value (Open Sets)", f"${open_value:,.0f}")
+col4.metric("Total Aftermarket Value (Open Sets)", f"${open_value:,.0f}")
 col5.metric("Total Retail Price (Open Sets)", f"${open_price:,.0f}")
 col6.metric("Average Open Set Value / Retail Price", f"{open_ratio:.2f}x")
 
