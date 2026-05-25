@@ -79,7 +79,7 @@ col1.metric(
 )
 col2.metric(
     "Greatest Depreciation (Sealed Sets)",
-    f"{sealed_worst['depreciation_pct'].iloc[0]*100:.1f}%",
+    f"{sealed_worst['appreciation_pct'].iloc[0]*100:.1f}%",
     sealed_worst['name'].iloc[0]
 )
 
@@ -91,7 +91,7 @@ col3.metric(
 )
 col4.metric(
     "Greatest Depreciation (Open Sets)",
-    f"{open_worst['depreciation_pct'].iloc[0]*100:.1f}%",
+    f"{open_worst['appreciation_pct'].iloc[0]*100:.1f}%",
     open_worst['name'].iloc[0]
 )
 
