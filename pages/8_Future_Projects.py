@@ -42,7 +42,6 @@ A personalized recommendation system based on:
 
 ### Additional Planned Enhancements
 - Part drawer heatmaps  
-- Color rarity analytics  
 - Theme‑level part value breakdown  
 - Automated data refresh pipeline  
 - Exportable dashboards for portfolio sharing  
