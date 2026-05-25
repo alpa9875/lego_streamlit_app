@@ -17,5 +17,5 @@ Use the sidebar to navigate between:
 - **Part Analytics** - rarity index, rarity-value weighting, set-based rarity, and total value
 - **Lego Room Planogram** - Drawer visualization of my Lego room with a value for each drawer
 - **Set Explorer Page** - Search by set number
-- **Color and Theme Analytics** - Analytics of parts based on color and theme
+- **Color and Theme Analytics** - Analytics of color for parts in sets and set themes
 - **Inventory Valuation Page** - Inventory value metrics""")
