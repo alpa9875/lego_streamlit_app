@@ -108,3 +108,35 @@ color_rarity = load_color_rarity()
 
 st.subheader("Color Rarity Score")
 st.dataframe(color_rarity)
+
+total_colors = color_stats["color_name"].nunique()
+
+max_color_row = color_stats.loc[color_stats["total_qty"].idxmax()]
+max_color_name = max_color_row["color_name"]
+max_color_qty = max_color_row["total_qty"]
+
+min_color_row = color_stats.loc[color_stats["total_qty"].idxmin()]
+min_color_name = min_color_row["color_name"]
+min_color_qty = min_color_row["total_qty"]
+
+st.subheader("Color Summary Metrics")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric(
+    "Total Number of Colors",
+    f"{total_colors}"
+)
+
+col2.metric(
+    "Most Common Color (by Quantity)",
+    f"{max_color_name}",
+    f"{max_color_qty:,}"
+)
+
+col3.metric(
+    "Least Common Color (by Quantity)",
+    f"{min_color_name}",
+    f"{min_color_qty:,}"
+)
+
