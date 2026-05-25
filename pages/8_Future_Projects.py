@@ -4,7 +4,7 @@ st.title("🚀 Future Projects")
 
 st.markdown("""
 Thank you for checking out my Lego data analytics! 
-I prepared this page during my search for my next career opportunity to demonstrate my data analytics, SQL, and PYTHON skills. I managed to learn about these topics and create this app between March and June of 2026.
+I prepared this app during my search for my next career opportunity to demonstrate my data analytics, SQL, and PYTHON skills. I managed to learn about these topics and create this app between March and June of 2026.
 Below are several upcoming enhancements planned for my LEGO Analytics Platform.  
 These projects will expand the analytical depth of the app and introduce new data‑driven insights.
 
