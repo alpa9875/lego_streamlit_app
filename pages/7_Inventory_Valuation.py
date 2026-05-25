@@ -97,7 +97,7 @@ open_worst_name = open_worst['name'].iloc[0]
 col4.metric(
     "Greatest Depreciation (Open Sets)",
     open_worst_name,
-    f"{open_worst_pct:.1f}%"
+    f"{open_worst_pct:.1f}%",
     delta_color="normal"
 )
 
