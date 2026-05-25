@@ -142,5 +142,5 @@ st.subheader("Total Value of All Parts (Used Prices)")
 total_val_df = load_total_parts_value()
 total_val = total_val_df["total_used_value"][0]
 
-st.metric("Total Used Value of All Parts", f"${total_val:,.2f}")
+st.metric("Total Average Used Price of All Parts", f"${total_val:,.2f}")
 
