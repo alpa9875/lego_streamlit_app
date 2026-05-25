@@ -94,7 +94,7 @@ open_best_name = open_best['name'].iloc[0]
 col3.metric(
     "Greatest Appreciation (Open Sets)",
     open_best_name,
-    f"{sealed_best_pct:.1f}%"
+    f"{open_best_pct:.1f}%"
 )
 open_worst_pct = open_worst['appreciation_pct'].iloc[0] * 100
 open_worst_name = open_worst['name'].iloc[0]
