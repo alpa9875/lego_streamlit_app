@@ -73,25 +73,25 @@ st.subheader("Set Appreciation Metrics")
 
 col1, col2 = st.columns(2)
 col1.metric(
-    "Greatest Appreciation (Sealed)",
+    "Greatest Appreciation (Sealed Sets)",
     f"{sealed_best['appreciation_pct'].iloc[0]*100:.1f}%",
     sealed_best['name'].iloc[0]
 )
 col2.metric(
-    "Greatest Depreciation (Sealed)",
-    f"{sealed_worst['appreciation_pct'].iloc[0]*100:.1f}%",
+    "Greatest Depreciation (Sealed Sets)",
+    f"{sealed_worst['depreciation_pct'].iloc[0]*100:.1f}%",
     sealed_worst['name'].iloc[0]
 )
 
 col3, col4 = st.columns(2)
 col3.metric(
-    "Greatest Appreciation (Open)",
+    "Greatest Appreciation (Open Sets)",
     f"{open_best['appreciation_pct'].iloc[0]*100:.1f}%",
     open_best['name'].iloc[0]
 )
 col4.metric(
-    "Greatest Depreciation (Open)",
-    f"{open_worst['appreciation_pct'].iloc[0]*100:.1f}%",
+    "Greatest Depreciation (Open Sets)",
+    f"{open_worst['depreciation_pct'].iloc[0]*100:.1f}%",
     open_worst['name'].iloc[0]
 )
 
