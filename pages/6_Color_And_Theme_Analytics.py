@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from utils.db import get_engine
 
-st.title("🎨 Color Analytics")
+st.title("Color and Theme Analytics in Sets")
 
 engine = get_engine()
 
@@ -84,9 +84,25 @@ def load_color_rarity():
     """
     return pd.read_sql(query, engine)
 
+@st.cache_data(ttl=300)
+def load_theme_stats():
+    query = """
+        SELECT
+            t.name AS theme,
+            COUNT(*) AS num_sets
+        FROM personal_set_inv psi
+        JOIN sets s 
+            ON s.set_num = psi.set_num || '-1'
+        JOIN themes t 
+            ON t.id = s.theme_id
+        GROUP BY t.name
+        ORDER BY num_sets DESC;
+    """
+    return pd.read_sql(query, engine)
+
 color_stats = load_color_stats()
 
-st.subheader("Quantity of Parts by Color")
+st.subheader("Quantity of Parts by Color in Sets")
 fig_color_qty = px.bar(
     color_stats,
     x="color_name",
@@ -95,7 +111,7 @@ fig_color_qty = px.bar(
 )
 st.plotly_chart(fig_color_qty, use_container_width=True)
 
-st.subheader("Total Used Value by Color")
+st.subheader("Total Used Value by Color in Sets")
 fig_color_val = px.bar(
     color_stats,
     x="color_name",
@@ -106,7 +122,7 @@ st.plotly_chart(fig_color_val, use_container_width=True)
 
 color_rarity = load_color_rarity()
 
-st.subheader("Color Rarity Score")
+st.subheader("Color Rarity Score in Sets")
 st.dataframe(color_rarity)
 
 total_colors = color_stats["color_name"].nunique()
@@ -119,24 +135,63 @@ min_color_row = color_stats.loc[color_stats["total_qty"].idxmin()]
 min_color_name = min_color_row["color_name"]
 min_color_qty = min_color_row["total_qty"]
 
-st.subheader("Color Summary Metrics")
+st.subheader("Set Color Summary Metrics")
 
 col1, col2, col3 = st.columns(3)
 
 col1.metric(
-    "Total Number of Colors",
+    "Total Number of Colors in Sets",
     f"{total_colors}"
 )
 
 col2.metric(
-    "Most Common Color (by Quantity)",
+    "Most Common Color in Sets (by Quantity)",
     f"{max_color_name}",
     f"{max_color_qty:,}"
 )
 
 col3.metric(
-    "Least Common Color (by Quantity)",
+    "Least Common Color in Sets (by Quantity)",
     f"{min_color_name}",
     f"{min_color_qty:,}"
 )
+themes = load_theme_stats()
+total_themes = themes["theme"].nunique()
 
+max_theme_row = themes.loc[themes["num_sets"].idxmax()]
+max_theme_name = max_theme_row["theme"]
+max_theme_count = max_theme_row["num_sets"]
+
+min_theme_row = themes.loc[themes["num_sets"].idxmin()]
+min_theme_name = min_theme_row["theme"]
+min_theme_count = min_theme_row["num_sets"]
+
+st.subheader("Theme Summary Metrics")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric(
+    "Total Number of Themes",
+    f"{total_themes}"
+)
+
+col2.metric(
+    "Theme With Most Sets",
+    f"{max_theme_name}",
+    f"{max_theme_count}"
+)
+
+col3.metric(
+    "Theme With Fewest Sets",
+    f"{min_theme_name}",
+    f"{min_theme_count}"
+)
+st.subheader("Number of Sets per Theme")
+
+fig = px.bar(
+    themes,
+    x="theme",
+    y="num_sets",
+    title="Sets per Theme",
+)
+st.plotly_chart(fig, use_container_width=True)
