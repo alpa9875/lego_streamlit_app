@@ -72,10 +72,12 @@ st.dataframe(
 st.subheader("Set Appreciation Metrics")
 
 col1, col2 = st.columns(2)
+sealed_best_pct = sealed_best['appreciation_pct'].iloc[0] * 100
+sealed_best_name = sealed_best['name'].iloc[0]
 col1.metric(
     "Greatest Appreciation (Sealed Sets)",
-    f"{sealed_best['appreciation_pct'].iloc[0]*100:.1f}%",
-    sealed_best['name'].iloc[0]
+    sealed_best_name,
+    f"{sealed_best_pct:.1f}%"
 )
 sealed_worst_pct = sealed_worst['appreciation_pct'].iloc[0] * 100
 sealed_worst_name = sealed_worst['name'].iloc[0]
@@ -87,10 +89,12 @@ col2.metric(
 )
 
 col3, col4 = st.columns(2)
+open_best_pct = open_best['appreciation_pct'].iloc[0] * 100
+open_best_name = open_best['name'].iloc[0]
 col3.metric(
     "Greatest Appreciation (Open Sets)",
-    f"{open_best['appreciation_pct'].iloc[0]*100:.1f}%",
-    open_best['name'].iloc[0]
+    open_best_name,
+    f"{sealed_best_pct:.1f}%"
 )
 open_worst_pct = open_worst['appreciation_pct'].iloc[0] * 100
 open_worst_name = open_worst['name'].iloc[0]
