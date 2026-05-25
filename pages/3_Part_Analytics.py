@@ -40,6 +40,17 @@ def load_category_stats():
     return pd.read_sql(query, engine)
 
 @st.cache_data(ttl=300)
+def load_total_parts_value():
+    query = """
+        SELECT 
+            SUM(spi.grand_total_qty * COALESCE(pp.avg_used_price, 0)) AS total_used_value
+        FROM set_part_inventory spi
+        LEFT JOIN part_prices pp 
+            ON pp.part_num = spi.part_num;
+    """
+    return pd.read_sql(query, engine)
+
+@st.cache_data(ttl=300)
 def load_rarity_data():
     query = """
         SELECT
@@ -125,3 +136,11 @@ fig_rar = px.scatter(
     title="Composite Rarity vs Quantity"
 )
 st.plotly_chart(fig_rar, use_container_width=True)
+
+st.subheader("Total Value of All Parts (Used Prices)")
+
+total_val_df = load_total_parts_value()
+total_val = total_val_df["total_used_value"][0]
+
+st.metric("Total Used Value of All Parts", f"${total_val:,.2f}")
+
