@@ -36,7 +36,7 @@ def load_set_value_metrics():
             quantity,
             is_sealed,
             CASE 
-                WHEN retail_price > 0 THEN (retail_value - retail_price) / retail_price
+                WHEN retail_price > 1 THEN (retail_value - retail_price) / retail_price
                 ELSE NULL
             END AS appreciation_pct
         FROM personal_set_inv;
