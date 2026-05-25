@@ -74,7 +74,7 @@ fig = px.scatter(
 
 st.plotly_chart(fig, use_container_width=True)
 
-st.subheader("Them-Level Value Trends")
+st.subheader("Theme-Level Value Trends")
 theme_avg = df.groupby("theme")[["retail_price", "aftermarket_value"]].mean().reset_index()
 
 fig2 = px.bar(
