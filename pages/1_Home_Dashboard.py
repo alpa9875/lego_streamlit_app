@@ -42,16 +42,16 @@ col3.metric("Total Aftermarket Value", f"${summary['total_aftermarket_value'][0]
 col4.metric("Total Parts", f"{summary['total_parts'][0]:,}")
 
 image1 = Image.open("images/20260628_181631.jpg")
-st.image1(image1, caption = "Displayed Sets on Bookcase", use_column_width=True)
+st.image(image1, caption = "Displayed Sets on Bookcase", use_column_width=True)
 
 image2 = Image.open("images/20260628_181724.jpg")
-st.image2(image2, caption = "Displayed Sets on High Shelf", use_columng_width=True)
+st.image(image2, caption = "Displayed Sets on High Shelf", use_columng_width=True)
 
 image3 = Image.open("images/20260628_181905.jpg")
-st.image3(image3, caption = "Displayed Sets on Wire Shelf", use_column_width=True)
+st.image(image3, caption = "Displayed Sets on Wire Shelf", use_column_width=True)
 
 image4 = Image.open("images/20260628_181951.jpg")
-st.image4(image4, caption="Lego Room Angle 1", use_column_width=True)
+st.image(image4, caption="Lego Room Angle 1", use_column_width=True)
 
 image5 = Image.open("images/20260628_182019.jpg")
-st.image5(image5, caption="Lego Room Angle 2", use_column_width=True)
+st.image(image5, caption="Lego Room Angle 2", use_column_width=True)
