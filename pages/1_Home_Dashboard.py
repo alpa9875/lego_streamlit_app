@@ -45,7 +45,7 @@ image1 = Image.open("images/20260628_181631.jpg")
 st.image(image1, caption = "Displayed Sets on Bookcase", use_column_width=True)
 
 image2 = Image.open("images/20260628_181724.jpg")
-st.image(image2, caption = "Displayed Sets on High Shelf", use_columng_width=True)
+st.image(image2, caption = "Displayed Sets on High Shelf", use_column_width=True)
 
 image3 = Image.open("images/20260628_181905.jpg")
 st.image(image3, caption = "Displayed Sets on Wire Shelf", use_column_width=True)
